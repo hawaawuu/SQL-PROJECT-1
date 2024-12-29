@@ -1,0 +1,45 @@
+--Schema Design
+CREATE TABLE Patient (
+	PatientID INT PRIMARY KEY,
+	First_name	CHAR (50),
+	Last_name	CHAR (50),
+	DOB	DATE,
+	MRN	VARCHAR(50),
+	Gender CHAR (20),
+);
+
+CREATE TABLE Staff (
+	StaffID INT PRIMARY KEY,
+	First_name CHAR (50),
+	Last_name	CHAR (50),
+	Position	CHAR (100),
+	Specialty	CHAR (100),
+	Hourly_rate	DECIMAL (5, 2),
+);
+CREATE TABLE CREATE Procedure (
+	ProcedureID	INT PRIMARY KEY,
+	PatientID INT,
+	StaffID	INT,
+	RoomID INT,
+	AppointmentID INT,
+	InsuranceclaimID	INT,
+	Duration VARCHAR (20),
+	Procedure_name CHAR (50),
+	Procedure_cost DECIMAL (5,2),
+	FOREIGN KEY(AppointmentID) REFERENCES Appointment(AppointmentID),
+	FOREIGN KEY(InsuranceclaimID) REFERENCES Insuranceclaim(InsuranceclaimID),
+	FOREIGN KEY(PatientID) REFERENCES Patient (PatientID),
+	FOREIGN KEY(RoomID) REFERENCES Room(RoomID),
+	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID),
+);
+CREATE TABLE Appointment (
+	AppointmentID	INTEGER,
+	PatientID	INTEGER,
+	StaffID	INTEGER,
+	Appointment_date	DATE,
+	Appointment_time	TIME,
+	Status	CHARACTER (50),
+	PRIMARY KEY(AppointmentID),
+	FOREIGN KEY(PatientID) REFERENCES Patient(PatientID),
+	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID)
+)
