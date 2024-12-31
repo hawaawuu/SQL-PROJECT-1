@@ -1,0 +1,8 @@
+--Find patients with appointments on or after a specific date but not scheduled with a particular staff
+--Calculate the total weekly pay for each staff member
+--Calculate the average hourly rate for each position
+--Group procedures by name and calculate their average cost
+--Count the number of procedures performed by each staff member
+--List all appointments by date and time
+--Join patient and insurance tables to find the policy details for all patients
+--Identify prescriptions of patients with no refills remaining
