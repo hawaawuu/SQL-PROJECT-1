@@ -1,1 +1,98 @@
+--Insert data into Insuranceclaim table
+INSERT INTO Insuranceclaim (InsuranceclaimID, patientID, staffID, InsurancelD, ICD10_code, Claim_amount, Claim_date) VALUES 
+  (1, 1001, 1, 1, 'L81.0', '380.00', '2024-11-28'),
+  (2, 1002, 2, 2, 'D48.5', '500.00', '2024-11-26'),
+  (3, 1003, 3, 3, 'L57.8', '1700.00', '2024-11-26'),
+  (4, 1004, 4, 4, 'L70.0', '800.00', '2024-11-28'),
+  (5, 1005, 5, 5, 'T98.5', '500.00', '2024-11-29'),
+  (6, 1006, 6, 6, 'L70.1', '450.00', '2024-12-01'),
+  (7, 1007, 7, 7, 'L60.1', '1900.00', '2024-12-02'),
+  (8, 1008, 8, 8, 'L91.8', '760.00', '2024-12-03'),
+  (9, 1009, 9, 9, 'T1', '550.00', '2024-12-04'),
+  (10, 1010, 10, 10, 'T78.4', '400.00', '2024-12-05');
 
+--Insert data into Procedure table
+INSERT INTO Procedure (ProcedurelD, patientID, staffID, roomID, appointmentID, insuranceclaimID, duration, procedure_name, procedure_cost) VALUES 
+  (1, 1001, 1, 103, 1, 1, '30 mins', 'Biopsy', '350.00'),
+  (2, 1002, 2, 101, 2, 2, '45 mins', 'Mole removal and testing', '500.00'),
+  (3, 1003, 3, 104, 3, 3, '80 mins', 'Fractional laser therapy', '700.00'),
+  (4, 1004, 4, 108, 4, 4, '20 mins', 'Botox for wrinkle treatment', '800.00'),
+  (5, 1005, 5, 102, 5, 5, '90 mins', 'Full-body mole mapping', '600.00'),
+  (6, 1006, 6, 103, 6, 6, '40 mins', 'Chemical Peel', '480.00'),
+  (7, 1007, 7, 105, 7, 7, '50 mins', 'Skin lesion analysis', '900.00'),
+  (8, 1008, 8, 104, 8, 8, '70 mins', 'Laser hair removal', '780.00'),
+  (9, 1009, 9, 104, 9, 9, '80 mins', 'Laser scar reduction', '560.00'),
+  (10, 1010, 10, 101, 10, 10, '28 mins', 'Patch testing for allergies', '400.00');
+
+--Insert data into Prescription table
+INSERT INTO Prescription (PrescriptionID, patientID, staffID, Medication_name, dosage, instructions, Refill_count) VALUES 
+  (1, 1001, 1, 'Amoxicillin', '500mg twice daily', 'Take with food', '1'),
+  (2, 1002, 2, 'Ibuprofen', '200mg as needed', 'Take with a full glass of water', '0'),
+  (3, 1003, 3, 'Hydrocortisone cream', 'Apply once daily', 'Apply a thin layer', '2'),
+  (4, 1004, 4, 'Cetirizine', '10mg daily', 'Take in the morning', '0'),
+  (5, 1005, 5, 'Tretinoin', 'Apply nightly', 'Avoid sun exposure', '0'),
+  (6, 1006, 6, 'Doxycycline', '100mg twice daily', 'Take with plenty of water', '3'),
+  (7, 1007, 7, 'Benzoyl Peroxide Gel', 'Apply twice daily', 'Avoid contact with eyes', '0'),
+  (8, 1008, 8, 'Minoxidil', 'Apply twice daily', 'For external use only', '1'),
+  (9, 1009, 9, 'Clobetasol Propionate', 'Apply twice daily', 'Use sparingly on affected area', '0'),
+  (10, 1010, 10, 'Loratadine', '10mg daily', 'Take in the evening', '2');
+
+--Insert data into Staff table
+INSERT INTO Staff (StaffID, First_name, Last_name, position, specialty, Hourly_rate) VALUES 
+  (1, 'Emma', 'Clark', 'Dermatologist', 'Skin Cancer Treatment', '200'),
+  (2, 'Liam', 'Jones', 'Dermatologist', 'Cosmetic Dermatology', '195'),
+  (3, 'Mia', 'Wilson', 'Dermatologist', 'Pediatric Dermatology', '180'),
+  (4, 'Noah', 'Lee', 'Dermatologist', 'Acne Treatment', '150'),
+  (5, 'Ava', 'Walker', 'Dermatologist', 'Laser Treatment', '120'),
+  (6, 'Sophia', 'Carter', 'Nurse', 'NA', '56'),
+  (7, 'Ethan', 'Hall', 'Nurse', 'NA', '52'),
+  (8, 'Olivia', 'Wright', 'Technician', 'Laser Treatment', '40'),
+  (9, 'Jack', 'Harris', 'Administrator', 'Clinic Management', '38'),
+  (10, 'Isabelle', 'Moore', 'Receptionist', 'Scheduling', '25');
+
+--Insert data into Appointment table
+INSERT INTO Appointment (AppointmentID, patientID, staffID, appointment_date, appointment_time, status) VALUES 
+(1, 1001, 1, '2024-11-25', '10:00', 'Scheduled'),
+(2, 1002, 2, '2024-11-26', '11:30', 'Completed'),
+(3, 1003, 4, '2024-11-26', '14:00', 'Scheduled'),
+(4, 1004, 3, '2024-11-28', '09:30', 'Cancelled'),
+(5, 1005, 2, '2024-11-29', '16:00', 'Scheduled'),
+(6, 1006, 4, '2024-12-01', '10:00', 'Completed'),
+(7, 1007, 8, '2024-12-02', '11:30', 'Scheduled'),
+(8, 1008, 5, '2024-12-03', '14:30', 'Scheduled'),
+(9, 1009, 6, '2024-12-04', '09:30', 'Scheduled'),
+(10, 1010, 7, '2024-12-05', '15:00', 'Scheduled');
+
+--Insert data into Insurance table
+INSERT INTO Insurance (InsuranceID, patientID, provider_name, policy_number) VALUES
+(2, 1002, 'UnitedHealthcare', 'THC123456789'),
+(3, 1003, 'Aetna', 'AET884321987'),
+(4, 1004, 'Blue Cross Blue Shield', 'BCB8987684321'),
+(5, 1005, 'Cigna', 'CIG123987654'),
+(6, 1006, 'Humana', 'HUM8Y6543210'),
+(7, 1007, 'UnitedHealthcare', 'KPU486789125'),
+(8, 1008, 'Medicare', 'MED123466780'),
+(9, 1009, 'Medicaid', 'MCD987664322'),
+(10, 1010, 'Anthem', 'ANT654987123'),
+(11, 1010, 'Fidelis', 'FID643216789');
+
+--Insert into Patient table
+INSERT INTO Patient (PatientID, first_name, last_name, date_of_birth, MRN, Gender) VALUES
+(1001, 'John', 'Williams', '1985-01-12', 4837261890, 'Male'),
+(1002, 'Jane', 'Smith', '1990-08-23', 9187038462, 'Female'),
+(1003, 'Alice', 'Johnson', '1978-09-18', 6274903881, 'Female'),
+(1004, 'Bob', 'Brown', '2001-12-30', 3048617296, 'Male'),
+(1005, 'Emily', 'Davis', '1982-07-07', 8926384170, 'Female'),
+(1006, 'Michael', 'White', '1995-03-14', 5702839410, 'Male'),
+(1007, 'Sarah', 'Taylor', '1988-06-21', 6831024957, 'Female'),
+(1008, 'Daniel', 'Green', '1992-11-04', 7496283050, 'Male'),
+(1009, 'Karen', 'Lewis', '1980-08-29', 6209348160, 'Female'),
+(1010, 'Steven', 'Clark', '1978-04-18', 1938405, 'Male');
+
+--Insert into Room table 
+INSERT INTO Room (RoomID, room_name, room_type, capacity) VALUES
+(101, 'ExamRoom 1', 'Exam Room', 1),
+(102, 'ExamRoom 2', 'Exam Room', 2),
+(103, 'Procedure Room', 'Operating', 1),
+(104, 'Laser Room', 'Laser', 1),
+(105, 'Consultation', 'Office', 1);
