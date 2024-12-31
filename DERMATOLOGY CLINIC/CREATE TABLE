@@ -17,7 +17,7 @@ CREATE TABLE Staff (
 	Hourly_rate	DECIMAL (5, 2)
 );
 
-CREATE TABLE CREATE Procedure (
+CREATE TABLE Procedure (
 	ProcedureID	INT PRIMARY KEY,
 	PatientID INT,
 	StaffID	INT,
@@ -84,4 +84,4 @@ CREATE TABLE Room (
 	Room_name VARCHAR (50),
 	Room_type CHAR(50),
 	Capacity INT,
-)
+);
