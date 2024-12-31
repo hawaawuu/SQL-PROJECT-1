@@ -5,7 +5,7 @@ CREATE TABLE Patient (
 	Last_name	CHAR (50),
 	DOB	DATE,
 	MRN	VARCHAR(50),
-	Gender CHAR (20),
+	Gender CHAR (20)
 );
 
 CREATE TABLE Staff (
@@ -14,8 +14,9 @@ CREATE TABLE Staff (
 	Last_name	CHAR (50),
 	Position	CHAR (100),
 	Specialty	CHAR (100),
-	Hourly_rate	DECIMAL (5, 2),
+	Hourly_rate	DECIMAL (5, 2)
 );
+
 CREATE TABLE CREATE Procedure (
 	ProcedureID	INT PRIMARY KEY,
 	PatientID INT,
@@ -30,16 +31,57 @@ CREATE TABLE CREATE Procedure (
 	FOREIGN KEY(InsuranceclaimID) REFERENCES Insuranceclaim(InsuranceclaimID),
 	FOREIGN KEY(PatientID) REFERENCES Patient (PatientID),
 	FOREIGN KEY(RoomID) REFERENCES Room(RoomID),
-	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID),
+	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID)
 );
+
 CREATE TABLE Appointment (
-	AppointmentID	INTEGER,
-	PatientID	INTEGER,
-	StaffID	INTEGER,
-	Appointment_date	DATE,
-	Appointment_time	TIME,
-	Status	CHARACTER (50),
+	AppointmentID INT,
+	PatientID INT,
+	StaffID	INT,
+	Appointment_date DATE,
+	Appointment_time TIME,
+	Status CHAR (50),
 	PRIMARY KEY(AppointmentID),
 	FOREIGN KEY(PatientID) REFERENCES Patient(PatientID),
 	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID)
+);
+
+CREATE TABLE Insurance (
+	InsuranceID INT PRIMARY KEY,
+	PatientID INT,
+	Provider_name	CHAR (100),
+	Policy_number	VARCHAR (50),
+	FOREIGN KEY(PatientID) REFERENCES Patient(PatientID)
+);
+
+CREATE TABLE Insuranceclaim (
+	InsuranceclaimID INT PRIMARY KEY,
+	StaffID	INT,
+	PatientID INT,
+	InsuranceID INT,
+	ICD10_code VARCHAR(20),
+	Claim_amount DECIMAL(5, 2),
+	Claim_date DATE,
+	FOREIGN KEY(InsuranceID) REFERENCES Insurance(InsuranceID),
+	FOREIGN KEY(PatientID) REFERENCES Patient(PatientID),
+	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID)
+);
+
+CREATE TABLE Prescription (
+	PrescriptionID INT PRIMARY KEY,
+	PatientID INT,
+	StaffID INT,
+	Medication_name CHAR (50),
+	Dosage VARCHAR (50),
+	Instructions CHARACTER (100),
+	Refill_count INT,
+	FOREIGN KEY(PatientID) REFERENCES Patient(PatientID),
+	FOREIGN KEY(StaffID) REFERENCES Staff(StaffID)
+);
+
+CREATE TABLE Room (
+	RoomID INT PRIMARY KEY,
+	Room_name VARCHAR (50),
+	Room_type CHAR(50),
+	Capacity INT,
 )
