@@ -17,10 +17,50 @@ WHERE
   AND NOT (Staff.First_name = 'Liam' AND Staff.Last_name = 'Jones')
   OR Appointment.Appointment_date IS NULL;
 
---Calculate the total weekly pay for each staff member
+-- Calculation of one or more attributes (without using a built-in function)
+-- Calculate the total weekly pay for each staff member
+SELECT Staff.StaffID,
+  Staff.First_name AS StaffFirst_name,
+  Staff.Last_name AS StaffLast_name,
+  Staff.Hourly_rate, 40 * Staff.Hourly_rate AS WeeklyPay
+FROM Staff
+WHERE Position = "Dermatologist' OR Position = 'Nurse';
+
+-- Aggregate function to count, sum or average
 --Calculate the average hourly rate for each position
+SELECT Position, COUNT(StaffID) AS Total_staff, AVG(Hourly_rate) AS AverageHourlyRate
+FROM Staff
+GROUP BY Position
+ORDER BY AverageHourlyRate DESC;
+
+GROUP BY with an aggregate function
 --Group procedures by name and calculate their average cost
+SELECT Procedure_name, AVG(Procedure_cost) AS AverageCost
+FROM Procedure
+GROUP BY Procedure_name;
+
+GROUP BY with an aggregate function
 --Count the number of procedures performed by each staff member
+SELECT StaffID, COUNT(ProcedureID) AS Total_procedures
+FROM Procedure
+GROUP BY StaffID
+ORDER BY Total_procedures DESC;
+
+ORDER BY
 --List all appointments by date and time
+SELECT AppointmentID, PatientID, StaffID, Appointment_date, Appointment_time
+FROM Appointment
+ORDER BY Appointment_date ASC, Appointment_time ASC;
+
+JOIN of at least two tables
 --Join patient and insurance tables to find the policy details for all patients
+SELECT Patient.PatientID, Patient.First_name, Patient.Last_name, Insurance.Provider_name, Insurance.Policy_number
+FROM Patient
+JOIN Insurance ON Patient.PatientID = Insuance.PatientID;
+
+JOIN of at least two tables
 --Identify prescriptions of patients with no refills remaining
+SELECT Patient.PatientID, Patient.First_name, Patient.Last_name, Prescription.Medication_name, Prescription.Refill_count
+FROM Patient
+JOIN Prescription ON Patient.PatientID = Prescription.PatientID
+WHERE Prescription.Refill_count = 0;
